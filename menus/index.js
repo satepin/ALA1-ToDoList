@@ -1,8 +1,8 @@
 "use strict";
 import readlineSync from 'readline-sync';
-import { mainMenu } from './menus.js';
-import { menuWarning } from './warning.js';
-import { taskMake } from './taskMake.js';
+import { mainMenu } from '../menus.js';
+import { taskMake } from '../taskMake.js';
+import { menuWarning } from '../text/warning.js';
 let menu = 0;
 let loop = true;
 const taskList = [];

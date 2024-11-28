@@ -8,4 +8,4 @@ function task(titulo,descripcion,statusindex,fechaCreacion,ultimaEdicion,vencimi
         this.vencimiento = vencimiento;
         this.dificultad = dificultad;
 }
-export {task}
+export { task };

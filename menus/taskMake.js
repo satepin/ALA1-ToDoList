@@ -1,7 +1,7 @@
 import readlineSync from 'readline-sync';
+import { task } from '../task/task.js';
+import { menuWarning } from '../text/warning.js';
 import { makeMenu } from './menus.js';
-import { task } from './task.js';
-import { menuWarning } from './warning.js';
 export function taskMake(){
         
     let loop = true
