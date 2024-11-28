@@ -1,14 +1,29 @@
 "use strict";
 import readlineSync from 'readline-sync';
-import * as mainMenu from 'menus.js';
-import PromptSync from 'prompt-sync';
+import { mainMenu } from './menus.js';
+import { menuWarning } from './warning.js';
+import { taskMake } from './taskMake.js';
 let menu = 0;
 let loop = true;
+const taskList = [];
 do{
-    mainMenu()
-menu = Number(readlineSync());
-switch(menu){
-
-}
-
+    mainMenu();
+    menu = Number(readlineSync.question());
+    switch(menu){
+        case 1:
+            break;
+        case 2:
+            break;
+        case 3:
+            taskMake();
+            break;
+        case 0:
+            loop = false;
+            console.log('\nTerminando Programa...\n');
+            break;
+        default:
+            menuWarning(menu);
+            break;
+    }
+    menu = 0;
 }while(loop);
