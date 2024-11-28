@@ -1,8 +1,9 @@
 import readlineSync from 'readline-sync';
 import { menuWarning } from '../text/warning.js';
-import { format, parse, getTime } from 'date-fns';
+import { format, parse } from 'date-fns';
+import { dateCheck } from '../menus/check.js';
 export function taskMakeNumber(dataName, extraData){
-    let taskData = Number(readlineSync.question('\nIngrese ' + ' de la tarea ' + extraData + '\n'));
+    let taskData = Number(readlineSync.question('\nIngrese ' + dataName + ' de la tarea ' + extraData + '\n'));
     if(isNaN(taskData)){
         menuWarning(taskData);
         return;
@@ -10,15 +11,22 @@ export function taskMakeNumber(dataName, extraData){
     return taskData;
 }
 
-export function taskMakeString(dataName, extraData){
-    let taskData = readlineSync.question('\nIngrese ' + ' de la tarea ' + extraData + '\n');
-    return taskData;
+export function taskMakeString(dataName, extraData, limit){
+    let taskData = readlineSync.question('\nIngrese ' + dataName + ' de la tarea ' + extraData + '\n');
+    taskData = taskData.slice(0,limit);
+    return taskData.trimEnd();
 }
 
 export function taskSetDate(dataName, extraData){
     let taskData = readlineSync.question('\nIngrese la fecha de ' + dataName + extraData +'\n');
-    taskData = format(parse(taskData, 'yyyy-MM-dd', new Date()) + 'Hora Estandar Argentina');
+    if(dateCheck(taskData)){
+        taskData = parse(taskData, 'yyyy-MM-dd', new Date());
+        taskData = format(taskData, 'yyyy/MM/dd');
+    }else{
+        console.log('\nFecha Invalida\n')
+    }
     // check de fecha valida requerido ; letras, numeros invalidos, menor a la fecha de creacion
+    
     return taskData;
 }
 

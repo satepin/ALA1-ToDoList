@@ -4,21 +4,23 @@ import { menuWarning } from '../text/warning.js';
 import { makeMenu } from '../text/menus.js';
 import * as taskMakeData from '../prompt/taskMakeData.js';
 import * as mapas from '../task/mapas.js'
+import { isNewEmptyCheck } from './check.js';
 export function taskMake(){
         
     let loop = true
-    let menu = 0;
+    let check = true;
+    let menu = 6;
     const newTask = new task();
     do{
         makeMenu(newTask,mapas.estados,mapas.dificultades);
         menu = Number(readlineSync.question());
         switch(menu){
-            case 1: //nombre ; check de 100 requerido
-                newTask.titulo = taskMakeData.taskMakeString('el nombre','(100 caracteres maximo)');
+            case 1: //nombre
+                newTask.titulo = taskMakeData.taskMakeString('el nombre','(100 caracteres maximo)',100);
                 newTask.ultimaEdicion = taskMakeData.lastEditDate()
                 break;
-            case 2: //descripcion ; check de 500 requerido
-                newTask.descripcion = taskMakeData.taskMakeString('una descripcion','500 caracteres maximo');
+            case 2: //descripcion
+                newTask.descripcion = taskMakeData.taskMakeString('una descripcion','(500 caracteres maximo)',500);
                 newTask.ultimaEdicion = taskMakeData.lastEditDate()
                 break;
             case 3: //estado
@@ -34,12 +36,21 @@ export function taskMake(){
             newTask.ultimaEdicion = taskMakeData.lastEditDate()
                 break
             case 0: //guardar tarea
-                loop = false; //check de no nulleza requerido
+                check = isNewEmptyCheck(newTask)
+                if(!check){
+                    loop = false;
+                    return newTask;
+                }else{
+                    console.log('\nEl atributo ' + check + ' se encuentra no definido o vacio, por favor corregir para guardar la tarea.');
+                }
                 break;
+            case -1:
+                loop = false;
+                return false;
             default:
                 menuWarning(menu)
                 break;
         }
-        menu = 0;
-    }while(loop) //retornar la tarea y pushearla a un array
+        menu = 6;
+    }while(loop)
 }

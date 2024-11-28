@@ -1,21 +1,29 @@
 "use strict";
 import readlineSync from 'readline-sync';
-import { mainMenu } from './text/menus.js';
-import { taskMake } from './menus/taskMake.js';
+import { mainMenu, viewMenu } from './text/menus.js';
 import { menuWarning } from './text/warning.js';
+import { taskMake } from './menus/taskMake.js';
 let menu = 0;
 let loop = true;
+let newTask = false;
 const taskList = [];
 do{
     mainMenu();
     menu = Number(readlineSync.question());
     switch(menu){
         case 1:
+            viewMenu()
             break;
         case 2:
             break;
         case 3:
-            taskMake();
+            newTask = taskMake();
+            if(newTask){
+                taskList.push(newTask);
+                newTask = false;
+            } else {
+                console.log('\nSe ha cancelado la tarea\n')
+            }
             break;
         case 0:
             loop = false;
