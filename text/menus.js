@@ -1,5 +1,7 @@
+import { viewTask } from '../prompt/getMenu.js';
+
 export function mainMenu(){
-    console.log('Escoja una tarea\n[1] Ver mis tareas\n[2] Buscar una tarea\n[3] Agregar una tarea\n[0] Salir\n...')
+    console.log('\n¿Que deseas hacer?\n\n[1] Ver mis tareas\n[2] Buscar una tarea\n[3] Agregar una tarea\n[0] Salir\n...')
 }
 
 export function makeMenu(task, estados, dificultades){
@@ -13,18 +15,21 @@ export function makeMenu(task, estados, dificultades){
     console.log('[-1] Cancelar Tarea\n');
 }
 
-export function searchMenu(){
-    
+export function searchMenu(taskList){
+    let busqueda = console.log('Introduce el titulo de una tarea para buscarla:\n >');
+    taskDetail(searchTask(taskList, busqueda));
 }
 
 export function viewMenu(taskList){
-    let i = 0;
-    if(taskList.length=0){
+    if(taskList.length == 0){
         console.log('Tu lista de tareas se encuentra vacia')
-    }else{
-        console.log('\nEstas son todas tus tareas:')
-        for(i = 0; i<taskList.length; i++){
-            console.log('[' + i + '] ' + taskList[i].titulo);
-        }
+    } else {
+    console.log('¿Que tareas deseas ver?');
+    console.log('[1] Ver todas las tareas');
+    console.log('[2] Ver tareas pendientes');
+    console.log('[3] Ver tareas en curso');
+    console.log('[4] Ver tareas terminadas');
+    console.log('[0] Volver')
+    viewTask(taskList);
     }
 }

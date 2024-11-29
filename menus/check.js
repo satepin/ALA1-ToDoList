@@ -1,24 +1,9 @@
 
 import * as dates from 'date-fns';
 export function isNewEmptyCheck(newTask){
-    switch(newTask.titulo)
+    if(newTask.titulo == "sin nombre" || newTask.titulo == "" || newTask.titulo == undefined || newTask.titulo == null)
     {
-        case "sin nombre":
-        case undefined:
-        case null:
-            return 'titulo';
-    }
-    switch(newTask.status)
-    {
-        case undefined:
-        case null:
-            return 'estado';
-    }
-    switch(newTask.dificultad)
-    {
-        case undefined:
-        case null:
-            return 'dificultad';
+        return 'titulo';
     }
     return false;
 }
@@ -30,4 +15,11 @@ export function dateCheck(dateString){
     }else{
         return true;
     }
+}
+
+export function rangeCheck(number, max){
+    if(!isNaN(number)){
+        number = Math.floor(number);
+        return (number >= 1 && number <= max);
+    }return false;
 }

@@ -4,7 +4,7 @@ import { menuWarning } from '../text/warning.js';
 import { makeMenu } from '../text/menus.js';
 import * as taskMakeData from '../prompt/taskMakeData.js';
 import * as mapas from '../task/mapas.js'
-import { isNewEmptyCheck } from './check.js';
+import { isNewEmptyCheck , rangeCheck } from './check.js';
 export function taskMake(){
         
     let loop = true
@@ -23,12 +23,14 @@ export function taskMake(){
                 newTask.descripcion = taskMakeData.taskMakeString('una descripcion','(500 caracteres maximo)',500);
                 newTask.ultimaEdicion = taskMakeData.lastEditDate()
                 break;
-            case 3: //estado
+            case 3: //estado ; check de status valido
                 newTask.status = (taskMakeData.taskMakeNumber('el estado','\n[1] Pendiente\n[2] En Curso\n[3] Terminada\n[4] Cancelada'))
+                if(!rangeCheck(newTask.status,4)){ newTask.status = 1 };
                 newTask.ultimaEdicion = taskMakeData.lastEditDate()
                 break;
             case 4: //Dificultad
                 newTask.dificultad = taskMakeData.taskMakeNumber('la dificultad' + '')
+                if(!rangeCheck(newTask.dificultad,3)){ newTask.dificultad = 1 };
                 newTask.ultimaEdicion = taskMakeData.lastEditDate()
                 break;
             case 5: //vencimiento

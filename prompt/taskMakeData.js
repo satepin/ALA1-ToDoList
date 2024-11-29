@@ -2,6 +2,7 @@ import readlineSync from 'readline-sync';
 import { menuWarning } from '../text/warning.js';
 import { format, parse } from 'date-fns';
 import { dateCheck } from '../menus/check.js';
+
 export function taskMakeNumber(dataName, extraData){
     let taskData = Number(readlineSync.question('\nIngrese ' + dataName + ' de la tarea ' + extraData + '\n'));
     if(isNaN(taskData)){

@@ -7,12 +7,13 @@ let menu = 0;
 let loop = true;
 let newTask = false;
 const taskList = [];
+//preguntar nombre de usuario
 do{
     mainMenu();
     menu = Number(readlineSync.question());
     switch(menu){
         case 1:
-            viewMenu()
+            viewMenu(taskList);
             break;
         case 2:
             break;
