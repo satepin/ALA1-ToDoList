@@ -25,9 +25,9 @@ export function viewTask(taskList){
                 return;
         }
         console.log('\nEstas son todas tus tareas' + filterType)
-        for(i = 0; i<taskList.length; i++){
+        for(i = 0; i<taskList.length; i++){ //hacer lista de copias para editar una
             if(taskList[i].status == filter-1 || filter == 1){
-                console.log('[' + (i+1) + '] ' + taskList[i].titulo);
+                console.log('\n[' + (i+1) + '] ' + taskList[i].titulo);
             }
         }
 }

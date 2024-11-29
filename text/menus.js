@@ -4,8 +4,12 @@ export function mainMenu(){
     console.log('\n¿Que deseas hacer?\n\n[1] Ver mis tareas\n[2] Buscar una tarea\n[3] Agregar una tarea\n[0] Salir\n...')
 }
 
-export function makeMenu(task, estados, dificultades){
-    console.log('Estas creando una nueva tarea\nFecha de creacion: ' + task.fechaCreacion + '\nUltima edicion: ' + task.ultimaEdicion);
+export function makeMenu(task, estados, dificultades, nueva){
+    if(nueva){console.log('\nEstas creando una nueva tarea');}
+    else{
+        console.log('\nEstas editando una tarea\n');
+    }
+    console.log('\nFecha de creacion: ' + task.fechaCreacion + '\nUltima edicion: ' + task.ultimaEdicion);
     console.log('[1] Ingresa el Titulo: ' + task.titulo );
     console.log('[2] Ingresa la descripcion: ' + task.descripcion );
     console.log('[3] Estado: ' + estados.get(task.status));

@@ -5,12 +5,18 @@ import { makeMenu } from '../text/menus.js';
 import * as taskMakeData from '../prompt/taskMakeData.js';
 import * as mapas from '../task/mapas.js'
 import { isNewEmptyCheck , rangeCheck } from './check.js';
-export function taskMake(){
+export function taskMake(editTask){
         
     let loop = true
     let check = true;
     let menu = 6;
-    const newTask = new task();
+    let newTask = null;
+    if(!editTask){
+        newTask = new task();
+    } else{
+        newTask = editTask;
+    }
+    
     do{
         makeMenu(newTask,mapas.estados,mapas.dificultades);
         menu = Number(readlineSync.question());
